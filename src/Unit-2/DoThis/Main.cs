@@ -20,10 +20,10 @@ namespace ChartApp
 
         #region Initialization
 
-
         private void Main_Load(object sender, EventArgs e)
         {
             _chartActor = Program.ChartActors.ActorOf(Props.Create(() => new ChartingActor(sysChart)), "charting");
+
             var series = ChartDataHelper.RandomSeries("FakeSeries" + _seriesCounter.GetAndIncrement());
             _chartActor.Tell(new ChartingActor.InitializeChart(new Dictionary<string, Series>()
             {
