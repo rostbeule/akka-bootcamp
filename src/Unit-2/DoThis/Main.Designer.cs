@@ -57,9 +57,9 @@
             // 
             // button1
             // 
-            this.btnCpu.Location = new System.Drawing.Point(680, 390);
+            this.btnCpu.Location = new System.Drawing.Point(685, 380);
             this.btnCpu.Name = "btnCpu";
-            this.btnCpu.Size = new System.Drawing.Size(75, 23);
+            this.btnCpu.Size = new System.Drawing.Size(100, 23);
             this.btnCpu.TabIndex = 0;
             this.btnCpu.Text = "CPU (ON)";
             this.btnCpu.UseVisualStyleBackColor = true;
@@ -67,9 +67,9 @@
             // 
             // button2
             // 
-            this.btnMemory.Location = new System.Drawing.Point(680, 420);
+            this.btnMemory.Location = new System.Drawing.Point(685, 410);
             this.btnMemory.Name = "btnMemory";
-            this.btnMemory.Size = new System.Drawing.Size(75, 23);
+            this.btnMemory.Size = new System.Drawing.Size(100, 23);
             this.btnMemory.TabIndex = 1;
             this.btnMemory.Text = "MEMORY (OFF)";
             this.btnMemory.UseVisualStyleBackColor = true;
@@ -77,9 +77,9 @@
             // 
             // button3
             // 
-            this.btnDisk.Location = new System.Drawing.Point(680, 450);
+            this.btnDisk.Location = new System.Drawing.Point(685, 440);
             this.btnDisk.Name = "btnDisk";
-            this.btnDisk.Size = new System.Drawing.Size(75, 23);
+            this.btnDisk.Size = new System.Drawing.Size(100, 23);
             this.btnDisk.TabIndex = 2;
             this.btnDisk.Text = "DISK (OFF)";
             this.btnDisk.UseVisualStyleBackColor = true;
