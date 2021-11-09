@@ -44,53 +44,60 @@ namespace ChartApp.Actors
 
         #endregion
 
+        private IActorRef _chartingActor;
+        private Dictionary<CounterType, IActorRef> _counterActors;
+
         /// <summary>
         /// Methods for generating new instances of all <see cref="PerformanceCounter"/>s
         /// we want to monitor
         /// </summary>
         private static readonly Dictionary<CounterType, Func<PerformanceCounter>>
             CounterGenerators = new Dictionary<CounterType, Func<PerformanceCounter>>()
-        {
-            {CounterType.Cpu, () => new PerformanceCounter("Processor",
-                "% Processor Time", "_Total", true)},
-            {CounterType.Memory, () => new PerformanceCounter("Memory",
-                "% Committed Bytes In Use", true)},
-            {CounterType.Disk, () => new PerformanceCounter("LogicalDisk",
-                "% Disk Time", "_Total", true)},
-        };
+            {
+                { CounterType.Cpu, () => new PerformanceCounter("Processor", "% Processor Time", "_Total", true) },
+                { CounterType.Memory, () => new PerformanceCounter("Memory", "% Committed Bytes In Use", true) },
+                { CounterType.Disk, () => new PerformanceCounter("LogicalDisk", "% Disk Time", "_Total", true) },
+            };
 
         /// <summary>
         /// Methods for creating new <see cref="Series"/> with distinct colors and names
 		/// corresponding to each <see cref="PerformanceCounter"/>
         /// </summary>
-        private static readonly Dictionary<CounterType, Func<Series>> CounterSeries =
-            new Dictionary<CounterType, Func<Series>>()
+        private static readonly Dictionary<CounterType, Func<Series>> 
+            CounterSeries = new Dictionary<CounterType, Func<Series>>()
         {
-            {CounterType.Cpu, () =>
-            new Series(CounterType.Cpu.ToString()){
-                 ChartType = SeriesChartType.SplineArea,
-                 Color = Color.DarkGreen}},
-            {CounterType.Memory, () =>
-            new Series(CounterType.Memory.ToString()){
-                ChartType = SeriesChartType.FastLine,
-                Color = Color.MediumBlue}},
-            {CounterType.Disk, () =>
-            new Series(CounterType.Disk.ToString()){
-                ChartType = SeriesChartType.SplineArea,
-                Color = Color.DarkRed}},
+            {
+                CounterType.Cpu, () => 
+                new Series(CounterType.Cpu.ToString())
+                { 
+                    ChartType = SeriesChartType.SplineArea,
+                    Color = Color.DarkGreen
+                }
+            },
+            {
+                CounterType.Memory, () =>
+                new Series(CounterType.Memory.ToString())
+                {
+                    ChartType = SeriesChartType.FastLine,
+                    Color = Color.MediumBlue
+                }
+            },
+            {
+                CounterType.Disk, () =>
+                new Series(CounterType.Disk.ToString())
+                {
+                    ChartType = SeriesChartType.SplineArea,
+                    Color = Color.DarkRed
+                }
+            },
         };
 
-        private Dictionary<CounterType, IActorRef> _counterActors;
-
-        private IActorRef _chartingActor;
-
-        public PerformanceCounterCoordinatorActor(IActorRef chartingActor) :
-            this(chartingActor, new Dictionary<CounterType, IActorRef>())
+        public PerformanceCounterCoordinatorActor(IActorRef chartingActor)
+            : this(chartingActor, new Dictionary<CounterType, IActorRef>())
         {
         }
 
-        public PerformanceCounterCoordinatorActor(IActorRef chartingActor,
-            Dictionary<CounterType, IActorRef> counterActors)
+        public PerformanceCounterCoordinatorActor(IActorRef chartingActor, Dictionary<CounterType, IActorRef> counterActors)
         {
             _chartingActor = chartingActor;
             _counterActors = counterActors;
